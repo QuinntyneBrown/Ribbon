@@ -16,7 +16,9 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'ts-loader',
+                use: 'ts-loader'
+            },
+            {
                 test: /\.less$/,
                 use: [
                     {
@@ -31,7 +33,7 @@ module.exports = {
                             strictMath: true,
                             noIeCompat: true,
                         },
-                    },
+                    }
                 ],
             }]
     },

@@ -1,5 +1,8 @@
 export class Ribbon {
+    private _element: any;
     constructor() {
-        alert("wtf");
+        this._element = "?";
+
+        alert(this._element);
     }
 }
