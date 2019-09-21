@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Shared\Components\Ribbon.ts" />
+    <None Remove="Views\Site.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\lib\owl.carousel\.gitattributes" />
     <None Include="wwwroot\lib\owl.carousel\.travis.yml" />
     <None Include="wwwroot\lib\owl.carousel\CONTRIBUTING.md" />
@@ -121,12 +126,22 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Views\Shared\Components\Ribbon.ts" />
+    <TypeScriptCompile Include="Views\Site.ts" />
   </ItemGroup>
 
 </Project>
