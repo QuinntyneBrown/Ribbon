@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    mode:"development",
     entry: "./Views/Site.ts",
     output: {
         path: path.resolve(__dirname, "wwwroot/js"),
@@ -10,13 +11,13 @@ module.exports = {
         publicPath: "/"
     },
     resolve: {
-        extensions: [".js", ".ts", ".less"]
+        extensions: [".ts",".less"]
     },
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: 'ts-loader'
+                test: /\.ts?$/,
+                use: 'ts-loader',
             },
             {
                 test: /\.less$/,
@@ -28,6 +29,9 @@ module.exports = {
                         loader: 'css-loader',
                     },
                     {
+                        loader: 'postcss-loader'
+                    },
+                    {
                         loader: 'less-loader',
                         options: {
                             strictMath: true,
@@ -35,7 +39,8 @@ module.exports = {
                         },
                     }
                 ],
-            }]
+            }
+        ]
     },
     plugins: [
     ]

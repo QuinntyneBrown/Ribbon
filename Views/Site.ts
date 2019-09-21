@@ -2,4 +2,5 @@
 
 import { Ribbon } from './Shared/Components/Ribbon';
 
-new Ribbon();
+
+Ribbon.mount();

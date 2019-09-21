@@ -5,11 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"webpack --mode=development --watch\" \"dotnet watch run\" \"browser-sync start --proxy http://localhost:4200/ --files '**/*.cshtml, **/*.css, **/*.js'\"",
+    "watch": "webpack --mode=development --watch",
+    "watch:server": "dotnet watch run",
+    "live-reload": "browser-sync start --proxy http://localhost:4200/ --files '**/*.cshtml, **/*.css, **/*.js'",
     "build": "webpack --mode=development --watch"
   },
   "author": "Quinntyne Brown",
   "license": "MIT",
   "dependencies": {
+    "@types/jquery": "^3.3.31",
+    "@types/owl.carousel": "^2.3.1",
+    "autoprefixer": "^9.6.1",
     "bootstrap-less": "^3.3.8",
     "browser-sync": "^2.26.7",
     "clean-webpack-plugin": "^3.0.0",
@@ -21,11 +27,14 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "owl.carousel": "^2.3.4",
+    "postcss-loader": "^3.0.0",
     "style-loader": "^1.0.0",
     "tiny-slider": "^2.9.2",
     "ts-loader": "^6.1.0",
     "typescript": "^3.6.3",
-    "webpack": "^4.40.0",
-    "webpack-cli": "^3.3.8"
+    "webpack": "^4.40.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.9"
   }
 }
