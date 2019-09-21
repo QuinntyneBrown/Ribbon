@@ -9,30 +9,41 @@ export class Ribbon {
     constructor(element: HTMLElement) {
         this._element = element;
         this._container = element.querySelector('.ribbon__container');
-        this._bindUIEvents();
+
+        const items = Array.from(element.querySelectorAll('.ribbon__item'));
+
+        items.forEach((e: HTMLElement) => e.onclick = this.handleClick.bind(this));
+
+        items[0].classList.add('ribbon--active');
+
+        this._bindTouchEvents();
     }
 
     static mount() {
         var ribbons = document.querySelectorAll('.ribbon');
 
-        if (navigator.msMaxTouchPoints) {
-            for (var i = 0; i < ribbons.length; i++) {
-                (ribbons[i] as HTMLElement).classList.add('ms-touch');
-            }
-        }
-        else {
-            for (var i = 0; i < ribbons.length; i++) {
-                new Ribbon(ribbons[i] as HTMLElement);
-            }
+        for (var i = 0; i < ribbons.length; i++) {
+            new Ribbon(ribbons[i] as HTMLElement);
         }
     }
 
-    _bindUIEvents() {
-        this._container.addEventListener("touchstart", (event) => this.start(event));
+    _bindTouchEvents() {
+        if (navigator.msMaxTouchPoints) {
+            this._element.classList.add('ms-touch');
+        } else {
+            this._container.addEventListener("touchstart", (event) => this.start(event));
 
-        this._container.addEventListener("touchmove", (event) => this.move(event));
+            this._container.addEventListener("touchmove", (event) => this.move(event));
 
-        this._container.addEventListener("touchend", (event) => this.end(event));
+            this._container.addEventListener("touchend", (event) => this.end(event));
+        }
+    }
+
+    handleClick(e: UIEvent) {
+        
+        Array.from(this._element.querySelectorAll('.ribbon__item'), (e: HTMLElement) => e.classList.remove('ribbon--active'));
+
+        (<HTMLElement>e.target).classList.add('ribbon--active');
     }
 
     start(event: TouchEvent) {
