@@ -61,16 +61,20 @@ export class Ribbon {
     }
 
     _bindTouchEvents() {
-        this._container.addEventListener("touchstart", (event) => this.start(event));
+        this._container.addEventListener("touchstart", this.start.bind(this));
 
-        this._container.addEventListener("touchmove", (event) => this.move(event));
+        this._container.addEventListener("touchmove", this.move.bind(this));
 
-        this._container.addEventListener("touchend", (event) => this.end(event));
+        this._container.addEventListener("touchend", this.end.bind(this));
     }
 
     handleClick(e) {
-        Array.from(this._element.querySelectorAll('.ribbon__item'), (e: HTMLElement) => e.classList.remove('ribbon--active'));
+        const elements = this._element.querySelectorAll('.ribbon__item');
 
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.remove('ribbon--active')
+        }
+        
         (<HTMLElement>e.target).classList.add('ribbon--active');
 
         this._element.dispatchEvent(new CustomEvent('ribbon-item-click', {
@@ -88,7 +92,7 @@ export class Ribbon {
         }
     }
 
-    handleNextClick(e) {
+    handleNextClick() {
         
         if(!this._container.classList.contains('ribbon--animate'))
             this._container.classList.add('ribbon--animate');
@@ -104,10 +108,9 @@ export class Ribbon {
 
         this._container.style.transform = `translate3d(${(this._translatex) * -1}px,0,0)`;
         this._previousButton.classList.remove('ribbon--button-disabled');
-        
     }
 
-    handlePreviousClick(e) {
+    handlePreviousClick() {
         if (!this._container.classList.contains('ribbon--animate'))
             this._container.classList.add('ribbon--animate');
 
@@ -135,7 +138,7 @@ export class Ribbon {
         this._container.style.transform = `translate3d(${(this._translatex + this._movex) * -1}px,0,0)`;
     }
 
-    end(e: TouchEvent) {
+    end() {
         if (this._movex > 0) {
             this._translatex += this._movex + 100;
 
