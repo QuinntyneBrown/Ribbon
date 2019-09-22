@@ -14,3 +14,10 @@
     <span class="ribbon__button ribbon--previous ribbon--button-disabled"><</span>
     <span class="ribbon__button ribbon--next">></span>
 </div>
+
+<script>
+    document.querySelector('.ribbon').addEventListener('ribbon-item-click', function (e) {
+        e.stopImmediatePropagation();
+        console.log(e.detail);        
+    });
+</script>
