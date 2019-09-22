@@ -1,17 +1,15 @@
 .ribbon {
     position:relative;
     overflow-x:hidden;
-}
-
-.ms-touch.ribbon {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    -ms-scroll-chaining: none;
+    user-select:none;
 }
 
 .ribbon--animate {
     transition: transform 0.3s ease-out;
+}
+
+.ribbon--button-disabled {
+    display:none;
 }
 
 .ribbon__container, .ribbon__item {
@@ -28,7 +26,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0;
-    width: 1174px;
+    width: 1175px;
 }
 
 .ribbon__item {
