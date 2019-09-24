@@ -9,9 +9,9 @@ export class Ribbon {
     private _nextButton: HTMLElement;
     private _previousButton: HTMLElement;
 
-    private _touchstartx = undefined;
-    private _touchmovex = undefined;
-    private _movex = undefined;
+    private _touchstartx = 0;
+    private _touchmovex = 0;
+    private _movex = 0;
     private _translatex = 0;
     private _width: number = 1178;
 
@@ -30,8 +30,12 @@ export class Ribbon {
         
         const items = element.querySelectorAll('.ribbon__item');
 
+        (element.querySelector('.ribbon__container') as HTMLElement).style["-ms-grid-template-columns"] ="1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr max-content";
+
+        alert("???")
         for (var i = 0; i < items.length; i++) {
-            (<HTMLElement>items[i]).onclick = this.handleClick.bind(this)
+            (<HTMLElement>items[i]).onclick = this.handleClick.bind(this);
+            (<HTMLElement>items[i]).style["-ms-grid-column"] = i + 1;
         }
         
         items[0].classList.add('ribbon--active');
@@ -44,8 +48,6 @@ export class Ribbon {
 
         this._nextButton.onclick = this.handleNextClick.bind(this);
         this._previousButton.onclick = this.handlePreviousClick.bind(this);
-
-        this._container.style.transform = `translate3d(${(this._translatex) * -1}px,0,0)`;
     }
 
     static mount() {
