@@ -8,6 +8,7 @@ export class Ribbon {
     private _container: HTMLElement;
     private _nextButton: HTMLElement;
     private _previousButton: HTMLElement;
+    private _navigationEnabled: boolean = true;
 
     private _touchstartx = 0;
     private _touchmovex = 0;
@@ -16,7 +17,7 @@ export class Ribbon {
     private _width: number = 1178;
 
     private get _scrollState(): RibbonScrollState {
-        if (window.innerWidth < this._width)
+        if (window.innerWidth < this._width && this._navigationEnabled)
             return RibbonScrollState.enabled;
 
         return RibbonScrollState.disabled;
@@ -150,7 +151,8 @@ export class Ribbon {
                     this._nextButton.classList.add('ribbon--button-disabled');
             }
 
-            this._previousButton.classList.remove('ribbon--button-disabled');
+            if(this._scrollState == RibbonScrollState.enabled)
+                this._previousButton.classList.remove('ribbon--button-disabled');
         }
 
         if (this._movex < 0) {
@@ -163,7 +165,8 @@ export class Ribbon {
                     this._previousButton.classList.add('ribbon--button-disabled');
             }
 
-            this._nextButton.classList.remove('ribbon--button-disabled');
+            if (this._scrollState == RibbonScrollState.enabled)
+                this._nextButton.classList.remove('ribbon--button-disabled');
         }
 
         this._container.classList.add('ribbon--animate');
