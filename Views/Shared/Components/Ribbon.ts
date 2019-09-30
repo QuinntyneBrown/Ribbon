@@ -32,7 +32,6 @@ export class Ribbon {
 
         (element.querySelector('.ribbon__container') as HTMLElement).style["-ms-grid-template-columns"] ="1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr max-content";
 
-        alert("???")
         for (var i = 0; i < items.length; i++) {
             (<HTMLElement>items[i]).onclick = this.handleClick.bind(this);
             (<HTMLElement>items[i]).style["-ms-grid-column"] = i + 1;
